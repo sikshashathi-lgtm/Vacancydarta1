@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>नेपाल सरकार | शिक्षा साथी - डिजिटल भ्याकेन्सी पोर्टल</title>
+  
+  <!-- नेपाली फन्ट (Mukta) -->
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Image Download को लागि html2canvas Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --gov-red: #C8102E;        
+      --gov-dark-red: #8B0000;
+      --gov-blue: #0A3161;       
+      --gov-dark-blue: #001A3D;
+      --gov-gold: #D4AF37;       
+      --gov-light-bg: #F4F6F9;   
+      --gov-card-border: #E2E8F0;
+      --gov-text-main: #0F172A;
+      --gov-text-muted: #475569;
+      --gov-success: #16A34A;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    body {
+      font-family: 'Mukta', sans-serif;
+      background-color: var(--gov-light-bg);
+      color: var(--gov-text-main);
+      padding-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    /* Top Gov Header Ribbon Strip */
+    .top-gov-bar {
+      background: linear-gradient(90deg, var(--gov-red) 0%, var(--gov-blue) 100%);
+      height: 6px;
+      width: 100%;
+    }
+
+    /* Official Main Header Section */
+    .header-card {
+      background: #FFFFFF;
+      border-bottom: 4px solid var(--gov-gold);
+      box-shadow: var(--shadow-sm);
+      padding: 24px 20px;
+      margin-bottom: 30px;
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .gov-logo {
+      width: 90px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.15));
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sub-title {
+      color: var(--gov-red);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      color: var(--gov-blue);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    /* Main Content Container */
+    .main-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    /* Official Form Box Styling */
+    .form-box {
+      background: #FFFFFF;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid var(--gov-card-border);
+      border-top: 6px solid var(--gov-blue);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 30px;
+    }
+
+    .section-header {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gov-blue);
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .full-width { grid-column: span 2; }
+
+    label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gov-text-main);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 11px 16px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s ease-in-out;
+      background: #FAFAFA;
+      color: var(--gov-text-main);
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--gov-blue);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(10, 49, 97, 0.1);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(180deg, var(--gov-blue) 0%, var(--gov-dark-blue) 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 13px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-cancel {
+      background: #64748B;
+      color: #FFFFFF;
+      border: none;
+      padding: 13px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cancel:hover {
+      background: #475569;
+    }
+
+    /* Search Box Container */
+    .search-box {
+      background: #FFFFFF;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      border: 1px solid var(--gov-card-border);
+      border-left: 6px solid var(--gov-red);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box label {
+      font-size: 16px;
+      color: var(--gov-blue);
+    }
+
+    /* Government Card Design */
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--gov-card-border);
+      border-top: 5px solid var(--gov-blue);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .badge-vac {
+      background: var(--gov-blue);
+      color: #FFFFFF;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-loc {
+      background: #FEF2F2;
+      color: var(--gov-red);
+      border: 1px solid #FECACA;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gov-blue);
+      margin-bottom: 16px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: #F8FAFC;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .info-line {
+      font-size: 15px;
+      color: var(--gov-text-muted);
+    }
+
+    .info-line strong {
+      color: var(--gov-text-main);
+      font-weight: 700;
+    }
+
+    .whatsapp-container {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .whatsapp-badge {
+      color: #15803D;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .card-footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--gov-text-muted);
+      border-top: 1px solid #F1F5F9;
+      padding-top: 12px;
+      margin-top: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn-download {
+      flex: 1;
+      background: var(--gov-success);
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .btn-download:hover {
+      background: #15803D;
+    }
+
+    .btn-edit {
+      flex: 1;
+      background: #F1F5F9;
+      color: var(--gov-blue);
+      border: 1px solid #CBD5E1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .btn-edit:hover {
+      background: #E2E8F0;
+      color: var(--gov-dark-blue);
+    }
+
+    #status {
+      text-align: center;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid, .info-grid { grid-template-columns: 1fr; }
+      .full-width { grid-column: span 1; }
+      .brand-title { font-size: 22px; }
+      .sub-title { font-size: 12px; }
+      .gov-logo { width: 70px; }
+      .header-content { gap: 14px; }
+      .form-box, .card { padding: 20px; }
+      .card-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-gov-bar"></div>
+
+<div class="header-card">
+  <div class="header-content">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" alt="Nepal Emblem Logo" class="gov-logo">
+    <div class="header-text">
+      <span class="sub-title">नेपाल सरकार | आधिकारिक रेकर्ड प्रणाली</span>
+      <h1 class="brand-title">शिक्षा साथी - डिजिटल पोर्टल</h1>
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+
+  <!-- १. फारम (थप्न र सच्याउन) -->
+  <div class="form-box">
+    <div class="section-header">
+      <span>📝</span> <span id="formTitle">नयाँ भ्याकेन्सी प्रविष्टि फारम</span>
+    </div>
+    <form id="vacancyForm">
+      <input type="hidden" id="actionType" name="action" value="insert">
+      <input type="hidden" id="rowIndex" name="rowIndex" value="">
+
+      <div class="form-grid">
+        <div>
+          <label>भ्याकेन्सी नं.</label>
+          <input type="text" name="vacancy_no" id="v_no" placeholder="उदाहरण: VAC-101" required>
+        </div>
+        <div>
+          <label>स्थान (Location)</label>
+          <input type="text" name="location" id="v_loc" placeholder="उदाहरण: काठमाडौँ" required>
+        </div>
+        <div>
+          <label>विषय (Subject)</label>
+          <input type="text" name="subject" id="v_sub" placeholder="उदाहरण: गणित" required>
+        </div>
+        <div>
+          <label>तह/कक्षा (Grade)</label>
+          <input type="text" name="grade" id="v_grd" placeholder="उदाहरण: कक्षा १०" required>
+        </div>
+        <div>
+          <label>विद्यार्थी सङ्ख्या</label>
+          <input type="text" name="student" id="v_std" placeholder="उदाहरण: १ जना" required>
+        </div>
+        <div>
+          <label>समय (Time)</label>
+          <input type="text" name="time" id="v_tm" placeholder="उदाहरण: बिहान ७:०० बजे" required>
+        </div>
+        <div>
+          <label>पारिश्रमिक (Salary)</label>
+          <input type="text" name="salary" id="v_sal" placeholder="उदाहरण: रू. १५,०००/-" required>
+        </div>
+        <div>
+          <label>शिक्षक (Teacher)</label>
+          <input type="text" name="teacher" id="v_tch" placeholder="उदाहरण: महिला/पुरुष" required>
+        </div>
+        <div class="full-width">
+          <label>अतिरिक्त विवरण (Additional/WhatsApp)</label>
+          <input type="text" name="additional" id="v_add" placeholder="उदाहरण: +९७७ ९८XXXXXXXX">
+        </div>
+        <div class="full-width">
+          <label>अवधि (Duration)</label>
+          <input type="text" name="duration" id="v_dur" placeholder="उदाहरण: ६ महिना" required>
+        </div>
+      </div>
+      
+      <div class="btn-group" style="margin-top:20px;">
+        <button type="submit" id="submitBtn" class="btn-submit">सेभ गर्नुहोस् (Save Record)</button>
+        <button type="button" id="cancelBtn" onclick="resetForm()" class="btn-cancel" style="display:none;">रद्द गर्नुहोस् (Cancel)</button>
+      </div>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <!-- २. खोज्ने Filter -->
+  <div class="search-box">
+    <label>🔍 विवरण खोज्नुहोस् (Search Records):</label>
+    <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Vacancy No, Subject, Location वा Teacher को नाम लेख्नुहोस्..." style="margin-top:8px;">
+  </div>
+
+  <!-- ३. कार्डहरू देखाउने ठाउँ -->
+  <div id="cardsContainer">
+    <p style="text-align:center; color:var(--gov-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>
+  </div>
+
+</div>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx4lx6_0yeHySLrastdJGoJJY4ugCqfUi7YHA8V1u_MVar_mYI087BiOTs-YvKqNk-F/exec';
+  let allData = [];
+
+  // १. डाटा तानेर ल्याउने फसन
+  function fetchRecords() {
+    const container = document.getElementById('cardsContainer');
+    container.innerHTML = '<p style="text-align:center; color:var(--gov-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>';
+
+    fetch(scriptURL, { redirect: 'follow' })
+      .then(res => res.text())
+      .then(textData => {
+        try {
+          const data = JSON.parse(textData);
+          if (Array.isArray(data)) {
+            allData = data;
+            renderCards(allData);
+          } else {
+            throw new Error("Invalid Format");
+          }
+        } catch (e) {
+          throw new Error("JSON Error");
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        container.innerHTML = `
+          <div style="background:#FEE2E2; color:#991B1B; padding:15px; border-radius:8px; text-align:center; border:1px solid #FCA5A5;">
+            <strong>डाटा तान्न सकिएन!</strong><br>
+            <small>कृपया Apps Script मा Deploy व्यवस्थित छ कि छैन जाँच गर्नुहोस्।</small>
+          </div>
+        `;
+      });
+  }
+
+  // २. कार्डहरू रेन्डर गर्ने
+  function renderCards(records) {
+    const container = document.getElementById('cardsContainer');
+    container.innerHTML = '';
+
+    if (records.length === 0) {
+      container.innerHTML = '<p style="text-align:center; color:#666; font-weight:bold;">कुनै पनि डाटा भेटिएन।</p>';
+      return;
+    }
+
+    records.forEach(item => {
+      const cardHTML = `
+        <div class="card" id="card-${item.rowIndex}">
+          <div class="card-top">
+            <span class="badge-vac">${item.vacancy_no || 'N/A'}</span>
+            <span class="badge-loc">📍 ${item.location || 'N/A'}</span>
+          </div>
+          
+          <div class="card-title">📖 विषय: ${item.subject || 'N/A'}</div>
+          
+          <div class="info-grid">
+            <div class="info-line">🎓 <strong>कक्षा/तह:</strong> ${item.grade || 'N/A'}</div>
+            <div class="info-line">👨‍🎓 <strong>विद्यार्थीहरू:</strong> ${item.student || '-'}</div>
+            <div class="info-line">👨‍🏫 <strong>शिक्षक/ट्युटर:</strong> ${item.teacher || 'N/A'}</div>
+            <div class="info-line">💵 <strong>शुल्क:</strong> ${item.salary || 'N/A'}</div>
+            <div class="info-line">⏰ <strong>समय:</strong> ${item.time || 'N/A'}</div>
+            <div class="info-line">📅 <strong>अवधि:</strong> ${item.duration || 'N/A'}</div>
+          </div>
+          
+          <div class="whatsapp-container">
+            <div class="info-line">
+              <strong>सम्पर्क (WhatsApp):</strong>
+              <span class="whatsapp-badge"> 📞 ${item.additional || 'N/A'}</span>
+            </div>
+          </div>
+
+          <div class="card-footer-note">
+            <span>🇳🇵</span> शिक्षा साथी - आधिकारिक डिजिटल रेकर्ड कार्ड
+          </div>
+
+          <div class="card-actions">
+            <button class="btn-download" onclick="downloadCardImage('card-${item.rowIndex}', '${item.vacancy_no}')">📥 Download Card</button>
+            <button class="btn-edit" onclick="editRecord(${item.rowIndex})">✏️ Edit</button>
+          </div>
+        </div>
+      `;
+      container.innerHTML += cardHTML;
+    });
+  }
+
+  // ३. Filter Search
+  function filterCards() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = allData.filter(item => {
+      return (item.vacancy_no && item.vacancy_no.toLowerCase().includes(query)) ||
+             (item.location && item.location.toLowerCase().includes(query)) ||
+             (item.subject && item.subject.toLowerCase().includes(query)) ||
+             (item.teacher && item.teacher.toLowerCase().includes(query));
+    });
+    renderCards(filtered);
+  }
+
+  // ४. Edit Click
+  function editRecord(rowIndex) {
+    const item = allData.find(d => d.rowIndex === rowIndex);
+    if (!item) return;
+
+    document.getElementById('actionType').value = 'update';
+    document.getElementById('rowIndex').value = item.rowIndex;
+    
+    document.getElementById('v_no').value = item.vacancy_no;
+    document.getElementById('v_loc').value = item.location;
+    document.getElementById('v_sub').value = item.subject;
+    document.getElementById('v_grd').value = item.grade;
+    document.getElementById('v_std').value = item.student;
+    document.getElementById('v_tm').value = item.time;
+    document.getElementById('v_sal').value = item.salary;
+    document.getElementById('v_tch').value = item.teacher;
+    document.getElementById('v_add').value = item.additional;
+    document.getElementById('v_dur').value = item.duration;
+
+    document.getElementById('formTitle').innerText = 'विवरण संशोधन गर्नुहोस् (Edit Record)';
+    document.getElementById('submitBtn').innerText = 'अद्यावधिक गर्नुहोस् (Update)';
+    document.getElementById('cancelBtn').style.display = 'block';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ५. Reset Form
+  function resetForm() {
+    document.getElementById('vacancyForm').reset();
+    document.getElementById('actionType').value = 'insert';
+    document.getElementById('rowIndex').value = '';
+    document.getElementById('formTitle').innerText = 'नयाँ भ्याकेन्सी प्रविष्टि फारम';
+    document.getElementById('submitBtn').innerText = 'सेभ गर्नुहोस् (Save Record)';
+    document.getElementById('cancelBtn').style.display = 'none';
+  }
+
+  // ६. Save / Update Form Submission
+  const form = document.getElementById('vacancyForm');
+  const statusDiv = document.getElementById('status');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusDiv.style.color = 'var(--gov-blue)';
+    statusDiv.innerText = 'प्रक्रियामा छ...';
+
+    const formData = new FormData(form);
+    const data = new URLSearchParams(formData);
+
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data.toString()
+    })
+    .then(() => {
+      statusDiv.style.color = 'green';
+      statusDiv.innerText = '✓ विवरण सफलतापूर्वक सुरक्षित भयो!';
+      resetForm();
+      submitBtn.disabled = false;
+      setTimeout(fetchRecords, 1500);
+    })
+    .catch(error => {
+      statusDiv.style.color = 'red';
+      statusDiv.innerText = 'त्रुटि: ' + error.message;
+      submitBtn.disabled = false;
+    });
+  });
+
+  // ७. Download PNG Card
+  function downloadCardImage(cardId, vacNo) {
+    const cardElement = document.getElementById(cardId);
+    const actions = cardElement.querySelector('.card-actions');
+    actions.style.display = 'none';
+
+    html2canvas(cardElement, { scale: 2 }).then(canvas => {
+      const image = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = `ShikshyaSathi_${vacNo || 'Card'}.png`;
+      link.click();
+      actions.style.display = 'flex';
+    });
+  }
+
+  // सुरुमा डाटा लोड गर्ने
+  fetchRecords();
+</script>
+
+</body>
+</html>
