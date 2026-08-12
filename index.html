@@ -7,49 +7,50 @@
   
   <!-- नेपाली फन्ट (Mukta) -->
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Image Download को लागि html2canvas Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
     :root {
-      --gov-red: #C8102E;        
-      --gov-dark-red: #8B0000;
-      --gov-blue: #0A3161;       
-      --gov-dark-blue: #001A3D;
-      --gov-gold: #D4AF37;       
-      --gov-light-bg: #F4F6F9;   
-      --gov-card-border: #E2E8F0;
-      --gov-text-main: #0F172A;
-      --gov-text-muted: #475569;
-      --gov-success: #16A34A;
+      --brand-red: #C8102E;        
+      --brand-dark-red: #8B0000;
+      --brand-blue: #0A3161;       
+      --brand-dark-blue: #001A3D;
+      --brand-gold: #D4AF37;       
+      --brand-light-bg: #F4F6F9;   
+      --brand-card-border: #E2E8F0;
+      --brand-text-main: #0F172A;
+      --brand-text-muted: #475569;
+      --brand-success: #16A34A;
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
 
     body {
       font-family: 'Mukta', sans-serif;
-      background-color: var(--gov-light-bg);
-      color: var(--gov-text-main);
+      background-color: var(--brand-light-bg);
+      color: var(--brand-text-main);
       padding-bottom: 50px;
       line-height: 1.6;
     }
 
-    .top-gov-bar {
-      background: linear-gradient(90deg, var(--gov-red) 0%, var(--gov-blue) 100%);
+    .top-bar {
+      background: linear-gradient(90deg, var(--brand-red) 0%, var(--brand-blue) 100%);
       height: 6px;
       width: 100%;
     }
 
     .header-card {
       background: #FFFFFF;
-      border-bottom: 4px solid var(--gov-gold);
+      border-bottom: 4px solid var(--brand-gold);
       box-shadow: var(--shadow-sm);
       padding: 24px 20px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .header-content {
@@ -60,17 +61,20 @@
       gap: 20px;
     }
 
-    .gov-logo {
-      width: 90px;
+    .header-logo {
+      width: 80px;
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.15));
     }
 
-    .header-text { display: flex; flex-direction: column; }
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
 
     .sub-title {
-      color: var(--gov-red);
+      color: var(--brand-red);
       font-size: 14px;
       font-weight: 800;
       letter-spacing: 0.8px;
@@ -78,7 +82,7 @@
     }
 
     .brand-title {
-      color: var(--gov-blue);
+      color: var(--brand-blue);
       font-size: 30px;
       font-weight: 800;
       line-height: 1.2;
@@ -90,116 +94,12 @@
       padding: 0 16px;
     }
 
-    .top-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn-add-new {
-      background: linear-gradient(180deg, var(--gov-blue) 0%, var(--gov-dark-blue) 100%);
-      color: #FFFFFF;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-add-new:hover { opacity: 0.95; transform: translateY(-1px); }
-
-    /* Filter Bar Styling */
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      background: #FFFFFF;
-      padding: 6px;
-      border-radius: 8px;
-      border: 1px solid var(--gov-card-border);
-    }
-
-    .filter-btn {
-      padding: 8px 16px;
-      border: none;
-      background: transparent;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gov-text-muted);
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-
-    .filter-btn.active {
-      background: var(--gov-blue);
-      color: #FFFFFF;
-    }
-
-    .search-box {
-      background: #FFFFFF;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 25px;
-      border: 1px solid var(--gov-card-border);
-      border-left: 6px solid var(--gov-red);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .search-box label { font-size: 16px; color: var(--gov-blue); }
-
-    /* Modal Popup Form Styling */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-
-    .modal-card {
-      background: #FFFFFF;
-      width: 100%;
-      max-width: 650px;
-      max-height: 90vh;
-      overflow-y: auto;
-      border-radius: 12px;
-      border-top: 6px solid var(--gov-blue);
-      box-shadow: var(--shadow-lg);
-      padding: 25px;
-      position: relative;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 15px; right: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      color: var(--gov-text-muted);
-      cursor: pointer;
-    }
-
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .full-width { grid-column: span 2; }
-
     label {
       font-size: 14px;
       font-weight: 700;
-      color: var(--gov-text-main);
+      color: var(--brand-text-main);
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     input[type="text"], select {
@@ -209,43 +109,119 @@
       border-radius: 8px;
       font-size: 15px;
       font-family: inherit;
+      transition: all 0.2s ease-in-out;
       background: #FAFAFA;
-      color: var(--gov-text-main);
+      color: var(--brand-text-main);
     }
 
-    input:focus, select:focus {
+    input[type="text"]:focus, select:focus {
       outline: none;
-      border-color: var(--gov-blue);
+      border-color: var(--brand-blue);
       background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(10, 49, 97, 0.1);
     }
-
-    .btn-group { display: flex; gap: 10px; margin-top: 15px; }
 
     .btn-submit {
-      background: linear-gradient(180deg, var(--gov-blue) 0%, var(--gov-dark-blue) 100%);
+      background: linear-gradient(180deg, var(--brand-blue) 0%, var(--brand-dark-blue) 100%);
       color: #FFFFFF;
       border: none;
-      padding: 12px;
+      padding: 13px 20px;
       font-size: 16px;
       font-weight: 700;
       border-radius: 8px;
       cursor: pointer;
       width: 100%;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
     }
 
-    /* Card Design */
+    .btn-submit:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-submit:disabled {
+      background: #94A3B8;
+      cursor: not-allowed;
+    }
+
+    /* Filter Panel Styling */
+    .filter-panel {
+      background: #FFFFFF;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      border: 1px solid var(--brand-card-border);
+      border-left: 6px solid var(--brand-blue);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .status-tab-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status-tab {
+      padding: 8px 16px;
+      border: 1px solid var(--brand-card-border);
+      background: #F8FAFC;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .status-tab.active {
+      background: var(--brand-blue);
+      color: #FFFFFF;
+      border-color: var(--brand-blue);
+    }
+
+    .status-tab.btn-result-check {
+      background: var(--brand-gold);
+      color: #000;
+      border-color: var(--brand-gold);
+      margin-left: auto;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .full-width-input {
+      grid-column: span 2;
+    }
+
     .card {
       background: #FFFFFF;
-      border: 1px solid var(--gov-card-border);
-      border-top: 5px solid var(--gov-blue);
+      border: 1px solid var(--brand-card-border);
+      border-top: 5px solid var(--brand-blue);
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 24px;
       box-shadow: var(--shadow-md);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card.booked { border-top-color: #64748B; opacity: 0.85; }
+    .card.booked-card {
+      border-top-color: #94A3B8;
+      background: #FAFAFA;
+      opacity: 0.85;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
 
     .card-top {
       display: flex;
@@ -257,19 +233,21 @@
     }
 
     .badge-vac {
-      background: var(--gov-blue);
+      background: var(--brand-blue);
       color: #FFFFFF;
       padding: 4px 14px;
       border-radius: 6px;
       font-weight: 800;
       font-size: 14px;
+      letter-spacing: 0.5px;
     }
 
     .badge-status {
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
+      margin-left: 6px;
     }
 
     .badge-status.open { background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; }
@@ -277,7 +255,7 @@
 
     .badge-loc {
       background: #FEF2F2;
-      color: var(--gov-red);
+      color: var(--brand-red);
       border: 1px solid #FECACA;
       padding: 4px 14px;
       border-radius: 20px;
@@ -285,7 +263,12 @@
       font-weight: 700;
     }
 
-    .card-title { font-size: 22px; font-weight: 800; color: var(--gov-blue); margin-bottom: 16px; }
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--brand-blue);
+      margin-bottom: 16px;
+    }
 
     .info-grid {
       display: grid;
@@ -298,8 +281,15 @@
       border: 1px solid #E2E8F0;
     }
 
-    .info-line { font-size: 15px; color: var(--gov-text-muted); }
-    .info-line strong { color: var(--gov-text-main); font-weight: 700; }
+    .info-line {
+      font-size: 15px;
+      color: var(--brand-text-muted);
+    }
+
+    .info-line strong {
+      color: var(--brand-text-main);
+      font-weight: 700;
+    }
 
     .whatsapp-container {
       background: #F0FDF4;
@@ -309,209 +299,432 @@
       margin-bottom: 16px;
     }
 
-    .whatsapp-badge { color: #15803D; font-weight: 700; font-size: 15px; }
+    .whatsapp-badge {
+      color: #15803D;
+      font-weight: 700;
+      font-size: 15px;
+    }
 
     .card-footer-note {
       text-align: center;
       font-size: 13px;
-      color: var(--gov-text-muted);
+      color: var(--brand-text-muted);
       border-top: 1px solid #F1F5F9;
       padding-top: 12px;
       margin-top: 16px;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .card-actions { display: flex; gap: 10px; margin-top: 18px; }
+    .card-actions {
+      display: flex;
+      margin-top: 18px;
+    }
 
-    .btn-download { flex: 1; background: var(--gov-success); color: #FFF; border: none; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    .btn-edit { flex: 1; background: #F1F5F9; color: var(--gov-blue); border: 1px solid #CBD5E1; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    .btn-delete { flex: 1; background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    .btn-delete:hover { background: #DC2626; color: #FFF; }
+    .btn-apply {
+      width: 100%;
+      background: #2563EB;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
 
-    #status { text-align: center; font-weight: 700; margin-top: 12px; }
+    .btn-apply:hover { background: #1D4ED8; }
+
+    .btn-apply.disabled {
+      background: #94A3B8 !important;
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    /* Modal Overlay Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      padding: 25px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      border-top: 6px solid var(--brand-red);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px; right: 15px;
+      background: #F1F5F9;
+      border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 10px;
+    }
+
+    .modal-header h3 {
+      color: var(--brand-blue);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .vac-preview {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: var(--brand-dark-blue);
+    }
+
+    .match-status {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      display: none;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .match-status.success {
+      background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; display: block;
+    }
+
+    .match-status.error {
+      background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; display: block;
+    }
+
+    .match-status.pending {
+      background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; display: block;
+    }
+
+    .btn-register-link {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--brand-red);
+      color: #FFFFFF !important;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+      word-break: break-all;
+    }
+
+    .btn-register-link:hover {
+      background: var(--brand-dark-red);
+    }
 
     @media (max-width: 640px) {
-      .form-grid, .info-grid { grid-template-columns: 1fr; }
-      .full-width { grid-column: span 1; }
+      .info-grid, .filter-grid { grid-template-columns: 1fr; }
+      .full-width-input { grid-column: span 1; }
       .brand-title { font-size: 22px; }
-      .card-actions { flex-direction: column; }
+      .sub-title { font-size: 12px; }
+      .header-logo { width: 70px; }
+      .header-content { gap: 14px; }
+      .card { padding: 20px; }
+      .status-tab.btn-result-check { margin-left: 0; width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<div class="top-gov-bar"></div>
+<div class="top-bar"></div>
 
 <div class="header-card">
   <div class="header-content">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" alt="Logo" class="gov-logo">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL7dDqEm-oYV5DXpfPm4YM9kpU1IB3uRoxQn6itok7vJskTq8Uts_flkvKk-QRxXK1R7k8fJ3s5pRHCmLbSnlA2uiocm_uwmGOmlPwI90_NOIWnclF8_JW-r3AWE2u36-ExBJSK6L82fZoB_75xwgzzTKwhX4Zza7T_M20GkGI38Y4vLc6Yi1EDMu6FDso/s1254/1000275071.png" alt="Sikshya Sathi Logo" class="header-logo">
     <div class="header-text">
-      <span class="sub-title">शिक्षा साथी | आधिकारिक रेकर्ड प्रणाली</span>
-      <h1 class="brand-title">शिक्षा साथी - डिजिटल पोर्टल</h1>
+      <span class="sub-title">शिक्षा साथी | डिजिटल भ्याकेन्सी नेटवर्क</span>
+      <h1 class="brand-title">शिक्षा साथी - भ्याकेन्सी पोर्टल</h1>
     </div>
   </div>
 </div>
 
 <div class="main-container">
 
-  <!-- Action Bar: Add Button & Filter -->
-  <div class="top-actions">
-    <button class="btn-add-new" onclick="openModal('insert')">➕ नयाँ भ्याकेन्सी थप्नुहोस्</button>
-    
-    <div class="filter-bar">
-      <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">सबै (All)</button>
-      <button class="filter-btn" id="filter-open" onclick="setFilter('Open')">🟢 Open</button>
-      <button class="filter-btn" id="filter-booked" onclick="setFilter('Booked')">🔴 Booked</button>
+  <!-- १. फिल्टर प्यानल -->
+  <div class="filter-panel">
+    <div class="status-tab-bar">
+      <button class="status-tab active" id="tab-all" onclick="setStatusFilter('all')">सबै (All)</button>
+      <button class="status-tab" id="tab-open" onclick="setStatusFilter('Open')">🟢 खुल्ला (Open)</button>
+      <button class="status-tab" id="tab-booked" onclick="setStatusFilter('Booked')">🔴 बुक भैसकेको (Booked)</button>
+      <button class="status-tab btn-result-check" onclick="openResultModal()">📜 आवेदनको नतिजा हेर्नुहोस् (Check Status)</button>
+    </div>
+
+    <div class="filter-grid">
+      <div>
+        <label>📍 ठेगाना / स्थान (Location):</label>
+        <input type="text" id="locationFilter" onkeyup="filterCards()" placeholder="उदा: पृथ्वी चोक , हेम्जा ...">
+      </div>
+
+      <div>
+        <label>📖 विषय (Subject):</label>
+        <input type="text" id="subjectFilter" onkeyup="filterCards()" placeholder="उदा: गणित, Science, English...">
+      </div>
+
+      <div class="full-width-input">
+        <label>🔍 अन्य विवरण (Vacancy No / Teacher):</label>
+        <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Vacancy No वा अन्य जानकारी खोज्नुहोस्...">
+      </div>
     </div>
   </div>
 
-  <!-- Search Filter -->
-  <div class="search-box">
-    <label>🔍 विवरण खोज्नुहोस् (Search Records):</label>
-    <input type="text" id="searchInput" onkeyup="applyFilters()" placeholder="Vacancy No, Subject, Location वा Teacher लेख्नुहोस्..." style="margin-top:8px;">
-  </div>
-
-  <!-- Cards List -->
+  <!-- २. कार्डहरू देखाउने ठाउँ -->
   <div id="cardsContainer">
-    <p style="text-align:center; color:var(--gov-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>
+    <p style="text-align:center; color:var(--brand-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>
   </div>
 
 </div>
 
-<!-- Pop-up Form Modal -->
-<div class="modal-overlay" id="formModal">
+<!-- Apply Modal -->
+<div class="modal-overlay" id="applyModal">
   <div class="modal-card">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <h2 style="color:var(--gov-blue); margin-bottom: 20px;" id="modalTitle">📝 नयाँ भ्याकेन्सी फारम</h2>
+    <button class="modal-close" onclick="closeApplyModal()">&times;</button>
+    <div class="modal-header">
+      <h3>🚀 भ्याकेन्सीको लागि आवेदन</h3>
+    </div>
     
-    <form id="vacancyForm">
-      <input type="hidden" id="actionType" name="action" value="insert">
-      <input type="hidden" id="rowIndex" name="rowIndex" value="">
+    <div class="vac-preview" id="modalVacInfo"></div>
 
-      <div class="form-grid">
-        <div id="vacNoGroup" style="display:none;">
-          <label>भ्याकेन्सी नं. (Vac No)</label>
-          <input type="text" name="vacancy_no" id="v_no" readonly style="background:#E2E8F0; cursor:not-allowed;">
-        </div>
-
-        <div id="statusGroup" style="display:none;">
-          <label>स्थिति (Status)</label>
-          <select name="status" id="v_status">
-            <option value="Open">🟢 Open</option>
-            <option value="Booked">🔴 Booked</option>
-          </select>
-        </div>
-
-        <div>
-          <label>स्थान (Location)</label>
-          <input type="text" name="location" id="v_loc" placeholder="उदाहरण: काठमाडौँ" required>
-        </div>
-        <div>
-          <label>विषय (Subject)</label>
-          <input type="text" name="subject" id="v_sub" placeholder="उदाहरण: गणित" required>
-        </div>
-        <div>
-          <label>तह/कक्षा (Grade)</label>
-          <input type="text" name="grade" id="v_grd" placeholder="उदाहरण: कक्षा १०" required>
-        </div>
-        <div>
-          <label>विद्यार्थी सङ्ख्या</label>
-          <input type="text" name="student" id="v_std" placeholder="उदाहरण: १ जना" required>
-        </div>
-        <div>
-          <label>समय (Time)</label>
-          <input type="text" name="time" id="v_tm" placeholder="उदाहरण: बिहान ७:०० बजे" required>
-        </div>
-        <div>
-          <label>पारिश्रमिक (Salary)</label>
-          <input type="text" name="salary" id="v_sal" placeholder="उदाहरण: रू. १५,०००/-" required>
-        </div>
-        <div>
-          <label>शिक्षक (Teacher)</label>
-          <input type="text" name="teacher" id="v_tch" placeholder="उदाहरण: महिला/पुरुष" required>
-        </div>
-        <div>
-          <label>अवधि (Duration)</label>
-          <input type="text" name="duration" id="v_dur" placeholder="उदाहरण: ६ महिना" required>
-        </div>
-        <div class="full-width">
-          <label>सम्पर्क (WhatsApp Number)</label>
-          <input type="text" name="additional" id="v_add" value="+९७७ ९७६८००६६६७" required>
-        </div>
+    <form id="applyForm" onsubmit="checkAndSubmit(event)">
+      <div style="margin-bottom: 12px;">
+        <label>तपाईंको पूरा नाम (Full Name):</label>
+        <input type="text" id="applicantName" placeholder="दर्ता गर्दाको पूरा नाम लेख्नुहोस्" required>
       </div>
-      
-      <div class="btn-group">
-        <button type="submit" id="submitBtn" class="btn-submit">सेभ गर्नुहोस् (Save Record)</button>
+
+      <div style="margin-bottom: 16px;">
+        <label>मोबाइल / WhatsApp नम्बर (१० अंक):</label>
+        <input type="text" id="applicantPhone" maxlength="10" placeholder="दर्ता गर्दाको १० अंकको नम्बर" required>
       </div>
+
+      <div id="matchStatusBox" class="match-status"></div>
+
+      <button type="submit" id="applySubmitBtn" class="btn-submit" style="margin-top: 15px; background: var(--brand-blue);">
+        🔍 प्रोफाइल जाँच गरी आवेदन पठाउनुहोस्
+      </button>
     </form>
-    <div id="status"></div>
+  </div>
+</div>
+
+<!-- Result Check Modal -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeResultModal()">&times;</button>
+    <div class="modal-header">
+      <h3>📋 आवेदन नतिजा (Application Status)</h3>
+    </div>
+
+    <form onsubmit="checkApplicantStatus(event)">
+      <div style="margin-bottom: 12px;">
+        <label>तपाईंको पूरा नाम (Full Name):</label>
+        <input type="text" id="resultName" placeholder="दर्ता गर्दाको पूरा नाम" required>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label>मोबाइल नम्बर (Phone Number):</label>
+        <input type="text" id="resultPhone" maxlength="10" placeholder="दर्ता गर्दाको १० अंकको नम्बर" required>
+      </div>
+
+      <div id="resultStatusBox" class="match-status"></div>
+
+      <button type="submit" class="btn-submit" style="margin-top: 15px; background: var(--brand-blue);">
+        🔍 नतिजा हेर्नुहोस्
+      </button>
+    </form>
   </div>
 </div>
 
 <script>
+  // भ्याकेन्सी र फारमका URLs
   const scriptURL = 'https://script.google.com/macros/s/AKfycbx4lx6_0yeHySLrastdJGoJJY4ugCqfUi7YHA8V1u_MVar_mYI087BiOTs-YvKqNk-F/exec';
+  const submitScriptURL = 'https://script.google.com/macros/s/AKfycby2roI6JJg1p5QdAEwNALuBkQ64JpfYox-yMQTo8ILT5y58PuO7K6Dp7lcKL-yPtHLRSw/exec';
+
+  // Tutor Database Sheet URL
+  const tutorApiURL = 'https://script.google.com/macros/s/AKfycbxwmBWm2ssdhlQ9S3dNU7ezUc9nCdC1uVAtT8X5L39umCtAMnI5_rKnJ0JytvyU-D4O/exec';
+
+  // दर्ता लिंक
+  const registrationLink = 'https://sikshashathi-lgtm.github.io/Sikhsyasathi-main/';
+
   let allData = [];
-  let currentStatusFilter = 'all';
+  let tutorData = [];
+  let selectedVacancy = null;
+  let activeStatusFilter = 'all';
 
-  // १. डाटा तानेर ल्याउने
-  function fetchRecords() {
+  function sanitizeName(str) {
+    if (!str) return '';
+    return String(str).toLowerCase().trim().replace(/\s+/g, ' ');
+  }
+
+  function sanitizePhone(str) {
+    if (!str) return '';
+    const digits = String(str).replace(/[^0-9]/g, '');
+    return digits.length > 10 ? digits.slice(-10) : digits;
+  }
+
+  function getVal(rowObj, possibleKeys) {
+    if (!rowObj) return '';
+    for (let key in rowObj) {
+      let cleanKey = key.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+      for (let p of possibleKeys) {
+        let cleanP = p.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cleanKey === cleanP) return rowObj[key];
+      }
+    }
+    return '';
+  }
+
+  // १. भ्याकेन्सीको डाटा तान्ने (Fetch Vacancies)
+  async function fetchRecords() {
     const container = document.getElementById('cardsContainer');
-    container.innerHTML = '<p style="text-align:center; color:var(--gov-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>';
+    container.innerHTML = '<p style="text-align:center; color:var(--brand-blue); font-weight:bold;">डाटा लोड हुँदैछ...</p>';
 
-    fetch(scriptURL, { redirect: 'follow' })
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          allData = data.reverse(); // नयाँ डाटा माथि देखाउने
-          applyFilters();
-        }
-      })
-      .catch(err => {
-        container.innerHTML = `<p style="text-align:center; color:red;">डाटा लोड गर्न सकिएन!</p>`;
-      });
+    try {
+      const res = await fetch(scriptURL, { redirect: 'follow' });
+      const textData = await res.text();
+      const data = JSON.parse(textData);
+
+      if (Array.isArray(data)) {
+        allData = data;
+        filterCards();
+      } else if (data.data && Array.isArray(data.data)) {
+        allData = data.data;
+        filterCards();
+      } else {
+        throw new Error("Invalid Data Format");
+      }
+    } catch (err) {
+      console.error("Fetch error:", err);
+      container.innerHTML = `
+        <div style="background:#FEE2E2; color:#991B1B; padding:15px; border-radius:8px; text-align:center; border:1px solid #FCA5A5;">
+          <strong>डाटा तान्न सकिएन!</strong><br>
+          <small>कृपया पछि पुनः प्रयास गर्नुहोस्।</small>
+        </div>
+      `;
+    }
   }
 
-  // २. Filter र Search लागु गर्ने
-  function setFilter(status) {
-    currentStatusFilter = status;
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`filter-${status.toLowerCase()}`).classList.add('active');
-    applyFilters();
+  // २. ट्युटर प्रोफाइल डाटा तान्ने (Fetch Tutor Database)
+  async function fetchTutors() {
+    try {
+      const res = await fetch(tutorApiURL, { redirect: 'follow' });
+      if (res.ok) {
+        const textData = await res.text();
+        const data = JSON.parse(textData);
+        const rows = Array.isArray(data) ? data : (data.data || data.tutors || []);
+        
+        tutorData = rows.map(r => {
+          let nameRaw = getVal(r, ['FULL NAME', 'Full Name', 'NAME', 'Name', 'Teacher Name', 'नाम', 'Applicant Name']);
+          let phoneRaw = getVal(r, ['PHONE NO', 'Phone', 'PHONE', 'Phone Number', 'MOBILE', 'Mobile No', 'phone', 'सम्पर्क', 'Applicant Phone']);
+          let statusRaw = getVal(r, ['STATUS', 'Status', 'RESULT', 'Result', 'ACCEPTANCE', 'status']);
+          
+          return {
+            name: sanitizeName(nameRaw),
+            phone: sanitizePhone(phoneRaw),
+            status: String(statusRaw || 'Pending').trim()
+          };
+        }).filter(t => t.name !== '' || t.phone !== '');
+      }
+    } catch (e) {
+      console.error("Tutor fetch error:", e);
+    }
   }
 
-  function applyFilters() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    
+  function setStatusFilter(status) {
+    activeStatusFilter = status;
+    document.querySelectorAll('.status-tab').forEach(b => {
+      if(!b.classList.contains('btn-result-check')) b.classList.remove('active');
+    });
+    if (status === 'all') document.getElementById('tab-all').classList.add('active');
+    if (status === 'Open') document.getElementById('tab-open').classList.add('active');
+    if (status === 'Booked') document.getElementById('tab-booked').classList.add('active');
+    filterCards();
+  }
+
+  function filterCards() {
+    const locQuery = document.getElementById('locationFilter').value.toLowerCase().trim();
+    const subQuery = document.getElementById('subjectFilter').value.toLowerCase().trim();
+    const genQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+
     const filtered = allData.filter(item => {
-      const matchesStatus = (currentStatusFilter === 'all') || (item.status === currentStatusFilter);
-      const matchesSearch = (item.vacancy_no && item.vacancy_no.toLowerCase().includes(query)) ||
-                            (item.location && item.location.toLowerCase().includes(query)) ||
-                            (item.subject && item.subject.toLowerCase().includes(query)) ||
-                            (item.teacher && item.teacher.toLowerCase().includes(query));
-      return matchesStatus && matchesSearch;
+      const itemStatus = (item.status || 'Open').toString().trim();
+      const matchesStatus = (activeStatusFilter === 'all') || 
+                            (itemStatus.toLowerCase() === activeStatusFilter.toLowerCase());
+
+      const locVal = String(item.location || '').toLowerCase();
+      const matchesLoc = !locQuery || locVal.includes(locQuery);
+
+      const subVal = String(item.subject || '').toLowerCase();
+      const matchesSub = !subQuery || subVal.includes(subQuery);
+
+      const vacNoVal = String(item.vacancy_no || '').toLowerCase();
+      const teacherVal = String(item.teacher || '').toLowerCase();
+      const matchesGen = !genQuery || vacNoVal.includes(genQuery) || teacherVal.includes(genQuery);
+
+      return matchesStatus && matchesLoc && matchesSub && matchesGen;
     });
 
     renderCards(filtered);
   }
 
-  // ३. कार्डहरू स्क्रिनमा रेन्डर गर्ने
   function renderCards(records) {
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
-    if (records.length === 0) {
-      container.innerHTML = '<p style="text-align:center; color:#666; font-weight:bold;">कुनै पनि डाटा भेटिएन।</p>';
+    if (!records || records.length === 0) {
+      container.innerHTML = '<p style="text-align:center; color:#666; font-weight:bold; margin-top:20px;">तपाईंले खोज्नुभएको विवरण अनुसारको भ्याकेन्सी भेटिएन।</p>';
       return;
     }
 
-    records.forEach(item => {
-      const isBooked = item.status === 'Booked';
+    records.forEach((item, index) => {
+      const isBooked = String(item.status || '').toLowerCase() === 'booked';
+      const vacNo = item.vacancy_no || `VAC-${index + 1}`;
+      
       const cardHTML = `
-        <div class="card ${isBooked ? 'booked' : ''}" id="card-${item.rowIndex}">
+        <div class="card ${isBooked ? 'booked-card' : ''}" id="card-${index}">
           <div class="card-top">
-            <div style="display:flex; gap:8px; align-items:center;">
-              <span class="badge-vac">${item.vacancy_no || 'N/A'}</span>
-              <span class="badge-status ${isBooked ? 'booked' : 'open'}">${isBooked ? '🔴 Booked' : '🟢 Open'}</span>
+            <div>
+              <span class="badge-vac">${vacNo}</span>
+              <span class="badge-status ${isBooked ? 'booked' : 'open'}">
+                ${isBooked ? '🔴 Booked' : '🟢 Open'}
+              </span>
             </div>
             <span class="badge-loc">📍 ${item.location || 'N/A'}</span>
           </div>
@@ -530,18 +743,19 @@
           <div class="whatsapp-container">
             <div class="info-line">
               <strong>सम्पर्क (WhatsApp):</strong>
-              <span class="whatsapp-badge"> 📞 ${item.additional || '+९७७ ९७६८००६६६७'}</span>
+              <span class="whatsapp-badge"> 📞 ${item.additional || 'N/A'}</span>
             </div>
           </div>
 
           <div class="card-footer-note">
-            <span>🇳🇵</span> शिक्षा साथी - आधिकारिक डिजिटल रेकर्ड कार्ड
+            शिक्षा साथी - आधिकारिक डिजिटल रेकर्ड कार्ड
           </div>
 
           <div class="card-actions">
-            <button class="btn-download" onclick="downloadCardImage('card-${item.rowIndex}', '${item.vacancy_no}')">📥 Download</button>
-            <button class="btn-edit" onclick="editRecord(${item.rowIndex})">✏️ Edit</button>
-            <button class="btn-delete" onclick="deleteRecord(${item.rowIndex})">🗑️ Delete</button>
+            ${isBooked ? 
+              `<button class="btn-apply disabled" disabled>🔒 Booked (प्याक भैसक्यो)</button>` : 
+              `<button class="btn-apply" onclick="openApplyModal('${vacNo}')">🚀 Apply (आवेदन)</button>`
+            }
           </div>
         </div>
       `;
@@ -549,125 +763,171 @@
     });
   }
 
-  // ४. Modal (Pop-up Form) खोल्ने/बन्द गर्ने
-  function openModal(type) {
-    document.getElementById('vacancyForm').reset();
-    document.getElementById('status').innerText = '';
-    
-    if (type === 'insert') {
-      document.getElementById('actionType').value = 'insert';
-      document.getElementById('modalTitle').innerText = '📝 नयाँ भ्याकेन्सी फारम';
-      document.getElementById('submitBtn').innerText = 'सेभ गर्नुहोस् (Save Record)';
-      document.getElementById('vacNoGroup').style.display = 'none';
-      document.getElementById('statusGroup').style.display = 'none';
-      document.getElementById('v_add').value = '+९७७ ९७६८००६६६७';
+  function openApplyModal(vacNo) {
+    selectedVacancy = allData.find(d => String(d.vacancy_no) === String(vacNo));
+    if (!selectedVacancy) {
+      selectedVacancy = { vacancy_no: vacNo, subject: 'N/A', location: 'N/A', grade: 'N/A', salary: 'N/A' };
     }
+
+    document.getElementById('modalVacInfo').innerHTML = `
+      <strong>📌 Vacancy No:</strong> ${selectedVacancy.vacancy_no || vacNo}<br>
+      <strong>📖 Subject:</strong> ${selectedVacancy.subject || 'N/A'}<br>
+      <strong>📍 Location:</strong> ${selectedVacancy.location || 'N/A'} (${selectedVacancy.grade || 'N/A'})
+    `;
+
+    document.getElementById('applicantName').value = '';
+    document.getElementById('applicantPhone').value = '';
     
-    document.getElementById('formModal').style.display = 'flex';
+    const matchBox = document.getElementById('matchStatusBox');
+    matchBox.className = 'match-status';
+    matchBox.style.display = 'none';
+
+    document.getElementById('applyModal').classList.add('active');
   }
 
-  function closeModal() {
-    document.getElementById('formModal').style.display = 'none';
+  function closeApplyModal() {
+    document.getElementById('applyModal').classList.remove('active');
   }
 
-  // ५. Edit Record (Pop-up मा खोल्ने)
-  function editRecord(rowIndex) {
-    const item = allData.find(d => d.rowIndex === rowIndex);
-    if (!item) return;
+  function openResultModal() {
+    document.getElementById('resultName').value = '';
+    document.getElementById('resultPhone').value = '';
+    const resBox = document.getElementById('resultStatusBox');
+    resBox.className = 'match-status';
+    resBox.style.display = 'none';
+    document.getElementById('resultModal').classList.add('active');
+  }
 
-    openModal('update');
-    document.getElementById('actionType').value = 'update';
-    document.getElementById('rowIndex').value = item.rowIndex;
-    document.getElementById('modalTitle').innerText = '✏️ भ्याकेन्सी विवरण सच्याउनुहोस्';
-    document.getElementById('submitBtn').innerText = 'अद्यावधिक गर्नुहोस् (Update)';
+  function closeResultModal() {
+    document.getElementById('resultModal').classList.remove('active');
+  }
+
+  function checkApplicantStatus(event) {
+    event.preventDefault();
+    const inputName = document.getElementById('resultName').value;
+    const inputPhone = document.getElementById('resultPhone').value;
     
-    document.getElementById('vacNoGroup').style.display = 'block';
-    document.getElementById('statusGroup').style.display = 'block';
+    const rName = sanitizeName(inputName);
+    const rPhone = sanitizePhone(inputPhone);
+    const resBox = document.getElementById('resultStatusBox');
 
-    document.getElementById('v_no').value = item.vacancy_no;
-    document.getElementById('v_status').value = item.status || 'Open';
-    document.getElementById('v_loc').value = item.location;
-    document.getElementById('v_sub').value = item.subject;
-    document.getElementById('v_grd').value = item.grade;
-    document.getElementById('v_std').value = item.student;
-    document.getElementById('v_tm').value = item.time;
-    document.getElementById('v_sal').value = item.salary;
-    document.getElementById('v_tch').value = item.teacher;
-    document.getElementById('v_dur').value = item.duration;
-    document.getElementById('v_add').value = item.additional || '+९७७ ९७६८००६६६७';
-  }
+    if (rName.length < 2 || rPhone.length !== 10) {
+      resBox.className = 'match-status error';
+      resBox.style.display = 'block';
+      resBox.innerHTML = '⚠️ कृपया सही नाम र १० अंकको फोन नम्बर दुवै राख्नुहोस्।';
+      return;
+    }
 
-  // ६. फारम सबमिट गर्ने (Save/Update)
-  document.getElementById('vacancyForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const submitBtn = document.getElementById('submitBtn');
-    const statusDiv = document.getElementById('status');
-
-    submitBtn.disabled = true;
-    statusDiv.style.color = 'var(--gov-blue)';
-    statusDiv.innerText = 'प्रक्रियामा छ...';
-
-    const formData = new FormData(e.target);
-    const data = new URLSearchParams(formData);
-
-    fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: data.toString()
-    })
-    .then(() => {
-      statusDiv.style.color = 'green';
-      statusDiv.innerText = '✓ सफलतापुर्वक सेभ भयो!';
-      setTimeout(() => {
-        closeModal();
-        submitBtn.disabled = false;
-        fetchRecords();
-      }, 1200);
-    })
-    .catch(err => {
-      statusDiv.style.color = 'red';
-      statusDiv.innerText = 'त्रुटि भयो!';
-      submitBtn.disabled = false;
+    // नाम र फोन नम्बर दुवै डेटाबेसमा एकैसाथ मिल्नुपर्छ
+    const matchedTutor = tutorData.find(t => {
+      const pMatch = rPhone.length === 10 && t.phone === rPhone;
+      const nMatch = rName.length > 1 && (t.name.includes(rName) || rName.includes(t.name));
+      return pMatch && nMatch;
     });
-  });
 
-  // ७. Database बाटै हटाउने (Delete Row - Updated URL parameters for GET)
-  function deleteRecord(rowIndex) {
-    if (!confirm('के तपाईं निश्चित हुनुहुन्छ? यो भ्याकेन्सी डाटाबेसबाटै हट्नेछ!')) return;
+    if (matchedTutor) {
+      const st = (matchedTutor.status || '').toLowerCase();
 
-    // GET Request मार्फत Delete URL पठाउने
-    const deleteUrl = `${scriptURL}?action=delete&rowIndex=${rowIndex}`;
+      if (st === 'accepted' || st === 'accept' || st === 'स्वीकृत') {
+        resBox.className = 'match-status success';
+        resBox.innerHTML = '🎉 <strong>बधाई छ!</strong> तपाईँ छनोट हुनुभयो। जतिसक्दो चाँडो हामीलाई सम्पर्क गर्नुहोला। STATUS: <strong>ACCEPTED</strong>';
+      } 
+      else if (st === 'rejected' || st === 'reject' || st === 'अस्वीकृत') {
+        resBox.className = 'match-status error';
+        resBox.innerHTML = '❌ <strong>दुःखको साथ भन्नुपर्छ!</strong> तपाईंको आवेदन <strong>REJECTED (अस्वीकृत)</strong> भएको छ।';
+      } 
+      else {
+        const currentStatus = matchedTutor.status ? matchedTutor.status : 'Pending';
+        resBox.className = 'match-status pending';
+        resBox.innerHTML = `⏳ तपाईंको आवेदन अझै <strong>${currentStatus} (प्रक्रियामा)</strong> छ। कृपया केही समय पछि हेर्नुहोस्।`;
+      }
+    } else {
+      resBox.className = 'match-status error';
+      resBox.innerHTML = '⚠️ यो नाम र फोन नम्बर जुधेको प्रोफाइल भेटिएन। विवरण जाँच गर्नुहोस् वा पहिले दर्ता गर्नुहोस्।';
+    }
+    resBox.style.display = 'block';
+  }
 
-    fetch(deleteUrl, { method: 'GET', mode: 'no-cors' })
-      .then(() => {
-        alert('रेकर्ड सफलतापुर्वक हटाइयो!');
-        fetchRecords(); // नयाँ लिस्ट लोड गर्ने
-      })
-      .catch(err => {
-        alert('हटाउन सकिएन, पुनः प्रयास गर्नुहोस्!');
-        console.error(err);
+  // ३. Apply Form Submit & Verification Check
+  async function checkAndSubmit(event) {
+    event.preventDefault();
+    
+    const submitBtn = document.getElementById('applySubmitBtn');
+    const rawName = document.getElementById('applicantName').value;
+    const rawPhone = document.getElementById('applicantPhone').value;
+
+    const cleanName = sanitizeName(rawName);
+    const cleanPhone = sanitizePhone(rawPhone);
+    const matchBox = document.getElementById('matchStatusBox');
+
+    if (cleanName.length < 2 || cleanPhone.length !== 10) {
+      matchBox.className = 'match-status error';
+      matchBox.style.display = 'block';
+      matchBox.innerHTML = '⚠️ कृपया पूरा नाम र १० अंकको सही फोन नम्बर लेख्नुहोस्।';
+      return;
+    }
+
+    // दर्ता (Verification) - नाम र फोन नम्बर दुवै एकैसाथ (AND) मिल्नुपर्छ
+    const isMatched = tutorData.some(t => {
+      const matchPhone = (t.phone !== '' && t.phone === cleanPhone);
+      const matchName = (t.name !== '' && (t.name.includes(cleanName) || cleanName.includes(t.name)));
+      return matchPhone && matchName; 
+    });
+
+    if (isMatched) { 
+      matchBox.className = 'match-status success';
+      matchBox.style.display = 'block';
+      matchBox.innerHTML = '⏳ प्रोफाइल प्रमाणित भयो! आवेदन दर्ता हुँदैछ...';
+      submitBtn.disabled = true;
+
+      const payload = JSON.stringify({
+        vacancy_no: selectedVacancy ? selectedVacancy.vacancy_no : 'N/A',
+        subject: selectedVacancy ? selectedVacancy.subject : 'N/A',
+        location: selectedVacancy ? selectedVacancy.location : 'N/A',
+        salary: selectedVacancy ? selectedVacancy.salary : 'N/A',
+        applicant_name: rawName,
+        applicant_phone: rawPhone
       });
+
+      try {
+        await fetch(submitScriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload
+        });
+
+        matchBox.innerHTML = '✅ बधाई छ! तपाईंको आवेदन सफलतापूर्वक प्राप्त भयो। कृपया WhatsApp मा सम्पर्क गर्नुहोस्।';
+        
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          closeApplyModal();
+        }, 2500);
+
+      } catch (err) {
+        console.error("Submission Error:", err);
+        matchBox.className = 'match-status error';
+        matchBox.style.display = 'block';
+        matchBox.innerHTML = '❌ डाटा सेभ हुन सकेन। पुनः प्रयास गर्नुहोस्।';
+        submitBtn.disabled = false;
+      }
+
+    } else {
+      matchBox.className = 'match-status error';
+      matchBox.style.display = 'block';
+      matchBox.innerHTML = `
+        ⚠️ तपाईंको नाम र फोन नम्बर जुधेको प्रोफाइल दर्ता भेटिएन। आवेदन दिन दुवै विवरण सही हुनुपर्छ अथवा पहिले दर्ता गर्नुहोस्:<br>
+        <a href="${registrationLink}" target="_blank" class="btn-register-link">
+          🔗 दर्ता गर्न यहाँ क्लिक गर्नुहोस्
+        </a>
+      `;
+    }
   }
 
-  // ८. Download Image Card
-  function downloadCardImage(cardId, vacNo) {
-    const cardElement = document.getElementById(cardId);
-    const actions = cardElement.querySelector('.card-actions');
-    actions.style.display = 'none';
-
-    html2canvas(cardElement, { scale: 2 }).then(canvas => {
-      const image = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.href = image;
-      link.download = `ShikshyaSathi_${vacNo || 'Card'}.png`;
-      link.click();
-      actions.style.display = 'flex';
-    });
-  }
-
-  // पेज लोड हुँदा डाटा तान्ने
-  fetchRecords();
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchRecords();
+    fetchTutors();
+  });
 </script>
 
 </body>
